@@ -1,5 +1,10 @@
 package com.hellow.eventos.controller;
 
+
+
+import com.hellow.eventos.EventosApplication;
+import com.hellow.eventos.classes.evento.Evento;
+import com.hellow.eventos.classes.evento.EventoRepository;
 import com.hellow.eventos.classes.tipo.Tipo;
 import com.hellow.eventos.classes.tipo.TipoRepository;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -12,22 +17,23 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="tipo")
-public class TipoController {
+@RequestMapping(path="evento")
+public class EventoController {
     @Autowired
-  private TipoRepository tipoRepository;
+    private EventoRepository eventoRepository;
+
 
     @GetMapping("todos")
-    public List<Tipo> getAllTipo(){
+    public List<Evento> getAllTipo(){
 
-        return this.tipoRepository.findAll();
+        return this.eventoRepository.findAll();
     }
 
     @PostMapping("add")
-    public Tipo addTipo(@RequestBody Tipo tipo){
-       //System.out.println(tipo);
-        this.tipoRepository.save(tipo);
-        return tipo;
+    public Evento addTipo(@RequestBody Evento evento){
+        //System.out.println(tipo);
+        this.eventoRepository.save (evento);
+        return evento;
     }
 
 }
